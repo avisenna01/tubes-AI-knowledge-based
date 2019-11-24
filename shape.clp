@@ -1,3 +1,46 @@
+; template 
+(deftemplate segitiga
+    (slot a1)
+    (slot a2)
+    (slot a3)
+    (slot d1)
+    (slot d2)
+    (slot d3))
+(deftemplate segiempat
+    (slot a1)
+    (slot a2)
+    (slot a3)
+    (slot a4)
+    (slot d1)
+    (slot d2)
+    (slot d3)
+    (slot d4))
+(deftemplate segilima
+    (slot a1)
+    (slot a2)
+    (slot a3)
+    (slot a4)
+    (slot a5)
+    (slot d1)
+    (slot d2)
+    (slot d3)
+    (slot d4)
+    (slot d5)
+    )
+
+(deftemplate segienam
+    (slot a1)
+    (slot a2)
+    (slot a3)
+    (slot a4)
+    (slot a5)
+    (slot a6)
+    (slot d1)
+    (slot d2)
+    (slot d3)
+    (slot d4)
+    (slot d5)
+    (slot d6))
 ; function
 (defrule get_number_of_angle
 =>
@@ -66,52 +109,8 @@
 (bind ?d4 (read))
 (bind ?d5 (read))
 (bind ?d6 (read))
-(assert(segitiga (a1 ?a1) (a2 ?a2) (a3 ?a3) (a4 ?a4) (a5 ?a5) (a6 ?a6) (d1 ?d1) (d2 ?d2) (d3 ?d3) (d4 ?d4) (d5 ?d5) (d6 ?d6)))
+(assert(segienam (a1 ?a1) (a2 ?a2) (a3 ?a3) (a4 ?a4) (a5 ?a5) (a6 ?a6) (d1 ?d1) (d2 ?d2) (d3 ?d3) (d4 ?d4) (d5 ?d5) (d6 ?d6)))
 )
-; template 
-(deftemplate segitiga
-    (slot a1)
-    (slot a2)
-    (slot a3)
-    (slot d1)
-    (slot d2)
-    (slot d3))
-(deftemplate segiempat
-    (slot a1)
-    (slot a2)
-    (slot a3)
-    (slot a4)
-    (slot d1)
-    (slot d2)
-    (slot d3)
-    (slot d4))
-(deftemplate segilima
-    (slot a1)
-    (slot a2)
-    (slot a3)
-    (slot a4)
-    (slot a5)
-    (slot d1)
-    (slot d2)
-    (slot d3)
-    (slot d4)
-    (slot d5)
-    )
-
-(deftemplate segienam
-    (slot a1)
-    (slot a2)
-    (slot a3)
-    (slot a4)
-    (slot a5)
-    (slot a6)
-    (slot d1)
-    (slot d2)
-    (slot d3)
-    (slot d4)
-    (slot d5)
-    (slot d6))
-
 ; menentukan bentuk
 
 (defrule isSegitiga
@@ -180,8 +179,8 @@
 (shape-is segitiga)
 (tipe-is segitigaSiku)
 (not (tipe-is segitigaSamaSisi)) 
+(segitiga (a1 ?a1) (a2 ?a2) (a3 ?a3) (d1 ?d1) (d2 ?d2) (d3 ?d3))
 (test(or(and (= ?d1 ?d2) (<> ?d2 ?d3)) (or(and (= ?d1 ?d3) (<> ?d2 ?d1)) (and (= ?d2 ?d3) (<> ?d1 ?d3)) )))
-(test(and (= ?d1 ?d2) (and (= ?d1 ?d3) (<> ?d2 ?d3))))
 =>
 (assert(tipe-is segitigaSamaKakiSiku))
 )
@@ -198,8 +197,8 @@
 ;segienam  
 (defrule segienamSamaSisi
 (shape-is segienam)
-(segilima (a1 ?a1) (a2 ?a2) (a3 ?a3) (a4 ?a4) (a5 ?a5) (a6 ?a6) (d1 ?d1) (d2 ?d2) (d3 ?d3) (d4 ?d4) (d5 ?d5) (d6 ?d6))
-(test(and (= ?d1 ?d2) (and(= ?d2 ?d3) (and (= ?d3 ?d4) (and(= ?d4 ?d5)(= ?d5 ?d6))))))
+(segienam (a1 ?a1) (a2 ?a2) (a3 ?a3) (a4 ?a4) (a5 ?a5) (a6 ?a6) (d1 ?d1) (d2 ?d2) (d3 ?d3) (d4 ?d4) (d5 ?d5) (d6 ?d6))
+(test(and (= ?d1 ?d2) (and(= ?d2 ?d3) (and (= ?d3 ?d4) (and(= ?d4 ?d5) (= ?d5 ?d6)) ) ) ))
 =>
 (assert (shape-is segienamSamaSisi))
 )
